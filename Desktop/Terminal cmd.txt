@@ -1,0 +1,38 @@
+1. Authrization sfdc org
+cmd:  sfdx auth:web:login -d -a DevHub
+
+2. Create new project
+cmd:  sfdx force:project:create -n PackageXMLProject
+
+3. Retrive the meta data
+cmd:  sfdx force:source:retrieve -u DevHub -x ./package.xml
+
+4. Created a scratch org
+CMD:  sfdx force:org:create -f config/project-scratch-def.json -s
+Successfully created scratch org: 00D0w0000001By8EAE, username: test-eap0kb3ztawk@example.com
+
+
+5. Push Metadata
+CMD: sfdx force:source:push
+
+6. Make default org 
+cmd: sfdx config:set defaultusername=test-eap0kb3ztawk@example.com
+
+7. Deploy the Package
+CMD:sfdx force:source:deploy -x ./package.xml -u DevHub -w10
+
+8. Display a list of all authorized orgs. You should see an entry listed with alias DevHub.
+sfdx force:org:list
+
+9. Create Sub Folder, create a sub-folder named assets.
+cmd: mkdir assets
+
+10. create sub folder aura using cmd
+cmd: mkdir force-app/main/default/aura
+
+11.  You can delete an existing scratch org to free up an allocation with the 
+CMD: sfdx force:org:delete command.
+
+
+
+jack_wilson@brave-moose-310111.com a9219030881
